@@ -12,6 +12,11 @@ public class Player {
 		this.time = time;
 	}
 	
+	public Player(String bib, String time) {
+		this.bibNumber = bib;
+		this.time = time;
+	}
+
 	public String toString(){
 		String str="";
 		str = str  + bibNumber + " " + lastName + " "  + firstInitial  + ". " + time; 
