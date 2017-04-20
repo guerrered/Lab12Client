@@ -8,7 +8,7 @@ public class x {
 		Client client = new Client();
 		Scanner stdIn = new Scanner(System.in);
 		while(!command.equalsIgnoreCase("exit")){
-			System.out.println("<command> <bib> <time>:");
+			System.out.println("<command> <bib> <time (milliseconds)>:");
 			String [] input = stdIn.nextLine().split(" ");
 			command = input[0];
 			
@@ -16,5 +16,7 @@ public class x {
 				client.add(input[1], input[2]);
 			}
 		}
+		
+		System.out.println("exiting");
 	}
 }
