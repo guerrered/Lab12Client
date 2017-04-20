@@ -8,12 +8,15 @@ public class x {
 		Client client = new Client();
 		Scanner stdIn = new Scanner(System.in);
 		while(!command.equalsIgnoreCase("exit")){
-			System.out.println("<command> <bib> <time (milliseconds)>:");
+			System.out.println("<command> <bib> <time (milliseconds)>: or 'send'");
 			String [] input = stdIn.nextLine().split(" ");
 			command = input[0];
 			
-			if(input[0].equalsIgnoreCase("add")){
+			if(input[0].equalsIgnoreCase("add") && input.length==3){
 				client.add(input[1], input[2]);
+			}
+			else if(input[0].equalsIgnoreCase("send")){
+				client.send();
 			}
 		}
 		

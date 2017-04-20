@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.google.gson.Gson;
+
 public class Client {
 	static DataOutputStream out;
 	static HttpURLConnection conn;
@@ -38,6 +40,7 @@ public class Client {
  }
 	
 	public void send(){
+		System.out.println("Sending Data");
 		URL site = null;
 		try {
 			site = new URL("http://localhost:8000/sendresults");
@@ -71,22 +74,22 @@ public class Client {
 		
 		//send info
 		try{
-		
-		
+			Gson gson = new Gson();
+			out.writeBytes(gson.toJson(playerList));
+			out.flush();
 			
-		
-		InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
-
-		// string to hold the result of reading in the response
-		StringBuilder sb = new StringBuilder();
-
-		// read the characters from the request byte by byte and build up
-		// the Response
-		int nextChar;
-		while ((nextChar = inputStr.read()) > -1) {
-			sb = sb.append((char) nextChar);
-		}
-		System.out.println("Return String: " + sb);
+			InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
+			
+			// string to hold the result of reading in the response
+			StringBuilder sb = new StringBuilder();
+			
+			// read the characters from the request byte by byte and build up
+			// the Response
+			int nextChar;
+			while ((nextChar = inputStr.read()) > -1) {
+				sb = sb.append((char) nextChar);
+			}
+			System.out.println("Return String: " + sb);
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		}
